@@ -1,6 +1,6 @@
 package view;
 
-import com.sun.source.tree.UsesTree;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UI_home_page extends JFrame{
+    public  String title = "Membership Management";
+
     private JPanel main_panel;
     private JButton btn_membership_managementButton;
     private JButton btn_view_data;
@@ -33,7 +35,7 @@ public class UI_home_page extends JFrame{
         btn_membership_managementButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UI_menu_management("Membership Management");
+                new UI_menu_management(title);
                 dispose();
             }
         });

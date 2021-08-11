@@ -8,12 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+
+
 import java.util.Calendar;
-import java.util.Date;
 
 public class UI_add_new_member extends JFrame {
     static int count =1;
@@ -30,13 +27,12 @@ public class UI_add_new_member extends JFrame {
     private JPanel date_end_panel;
     private JLabel label_menu;
 
-    private  JDateChooser data_chooser_birth = new JDateChooser();
-    private  JDateChooser data_chooser_star = new JDateChooser();
-    private  JDateChooser data_chooser_end = new JDateChooser();
+    private final JDateChooser date_chooser_birth = new JDateChooser();
+    private final JDateChooser date_chooser_star = new JDateChooser();
+    private final JDateChooser date_chooser_end = new JDateChooser();
 
-    private final ArrayList<Member> list_data = new ArrayList<>();
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
     Calendar calendar = Calendar.getInstance();
 
 
@@ -51,11 +47,11 @@ public class UI_add_new_member extends JFrame {
         label_menu.setFont(new Font("Roboto", Font.PLAIN, 60));
 
 
-        date_of_birth_panel.add(data_chooser_birth);
-        date_start_panel.add(data_chooser_star);
-        data_chooser_star.setDate(calendar.getTime());
-        date_end_panel.add(data_chooser_end);
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        date_of_birth_panel.add(date_chooser_birth);
+        date_start_panel.add(date_chooser_star);
+        date_chooser_star.setDate(calendar.getTime());
+        date_end_panel.add(date_chooser_end);
+
 
 
         btn_exit.addActionListener(new ActionListener() {
@@ -73,21 +69,21 @@ public class UI_add_new_member extends JFrame {
                 Member a = new Member();
                 a.setName(tf_name.getText());
                 a.setId(tf_id.getText());
-                a.setDate_of_birth(data_chooser_birth.getDate());
+                a.setDate_of_birth(date_chooser_birth.getDate());
                 a.setPhone_number(tf_phone_number.getText());
                 a.setAddress(tf_address.getText());
-                a.setDate_start(data_chooser_star.getDate());
-                a.setDate_end(data_chooser_end.getDate());
-//                list_data.add(a);
+                a.setDate_start(date_chooser_star.getDate());
+                a.setDate_end(date_chooser_end.getDate());
+
                 if (new data_access_object().add_member(a)){
                     JOptionPane.showMessageDialog(rootPane,"Add Success!");
                     System.out.println(++count);
                     tf_name.setText("");
                     tf_id.setText("");
-                    data_chooser_birth.setDate(null);
+                    date_chooser_birth.setDate(null);
                     tf_phone_number.setText("");
                     tf_address.setText("");
-                    data_chooser_star.setDate(calendar.getTime());
+                    date_chooser_star.setDate(calendar.getTime());
 
                 }else {
                     JOptionPane.showMessageDialog(rootPane,"Add failed!!");

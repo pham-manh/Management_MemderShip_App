@@ -23,7 +23,7 @@ public class data_access_object {
     public boolean add_member(Member s) {
 
         try (Connection connection = DriverManager.getConnection(url, user_name, password)) {
-            String sql = "INSERT INTO Table_data(name,id,date_of_birth,phone_number,address,date_start,date_end) VALUES (?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO data_table(name,id,date_of_birth,phone_number,address,date_start,date_end) VALUES (?,?,?,?,?,?,?);";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, s.getName());
@@ -69,6 +69,7 @@ public class data_access_object {
 
         return ls;
     }
+
 
     public static void main(String[] args) {
         new data_access_object();

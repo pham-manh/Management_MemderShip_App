@@ -13,7 +13,6 @@ public class UI_menu_management extends JFrame {
     private JButton btn_renewal;
     private JButton btn_remove;
     private JButton btn_exit;
-    String title = "Membership Management";
 
     public UI_menu_management(String title) {
         super(title);
@@ -36,6 +35,13 @@ public class UI_menu_management extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new UI_add_new_member(title);
+                dispose();
+            }
+        });
+        btn_edit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UI_edit_member_search(title);
                 dispose();
             }
         });
