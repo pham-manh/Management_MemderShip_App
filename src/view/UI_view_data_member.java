@@ -4,7 +4,6 @@ import model.Member;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -41,8 +40,8 @@ public class UI_view_data_member extends JFrame {
 
     private void tittle_Col_Table() {
         model = new DefaultTableModel();
-        Object[] collums = {"ID", "Name", "Date of Birth", "Phone Number", "Address", "Date Start", "Date end"};
-        model.setColumnIdentifiers(collums);
+        Object[] column = {"ID", "Name", "Date of Birth", "Phone Number", "Address", "Date Start", "Date end"};
+        model.setColumnIdentifiers(column);
         tbl_data.setModel(model);
         panel_scroll.setViewportView(tbl_data);
     }
