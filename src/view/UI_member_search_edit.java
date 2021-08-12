@@ -5,18 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UI_edit_member_search extends JFrame{
+public class UI_member_search_edit extends JFrame{
     private JPanel main_panel;
     private JTextField tf_search;
     private JButton btn_search;
     private JButton btn_exit;
     private JLabel label_welcome;
-    private JTable tbl_data_out;
-    private JScrollPane scroll_pane;
 
 
 
-    public UI_edit_member_search(String title){
+
+    public UI_member_search_edit(String title){
         super(title);
         setContentPane(main_panel);
         setSize(800,600);
@@ -27,11 +26,17 @@ public class UI_edit_member_search extends JFrame{
         btn_search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                new UI_edit_member(tf_search.getText());
+                new UI_renewal_member(tf_search.getText());
                 dispose();
             }
         });
 
+        btn_exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UI_home_page(title);
+            }
+        });
     }
 
 

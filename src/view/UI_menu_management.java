@@ -41,15 +41,21 @@ public class UI_menu_management extends JFrame {
         btn_edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UI_edit_member_search(title);
+                new UI_member_search_edit(title);
                 dispose();
             }
         });
         btn_edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UI_edit_member_search(title);
+                new UI_member_search_edit(title);
                 dispose();
+            }
+        });
+        btn_renewal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UI_member_search_edit(title);
             }
         });
     }
