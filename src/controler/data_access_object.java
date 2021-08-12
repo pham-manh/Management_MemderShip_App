@@ -41,34 +41,6 @@ public class data_access_object {
         }
     }
 
-    public ArrayList<Member> get_data_list() {
-        ArrayList<Member> ls = new ArrayList<>();
-        String sql = "SELECT * data_member";
 
-        try (Connection connection = DriverManager.getConnection(url, user_name, password)) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    Member m = new Member();
-                    m.setName(rs.getString("name"));
-                    m.setId(rs.getString("id"));
-                    m.setDate_of_birth(rs.getDate("date_of_birth"));
-                    m.setPhone_number(rs.getString("phone_number"));
-                    m.setAddress(rs.getString("address"));
-                    m.setDate_start(rs.getDate("date_start"));
-                    m.setDate_end(rs.getDate("date_end"));
-                    ls.add(m);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ls;
-    }
-
-
-    public static void main(String[] args) {
-        new data_access_object();
-    }
 
 }

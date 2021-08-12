@@ -4,6 +4,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class UI_home_page extends JFrame{
@@ -33,6 +35,13 @@ public class UI_home_page extends JFrame{
             dispose();
         });
         btn_exit.addActionListener(e -> System.exit(3));
+        btn_view_data.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UI_view_data_member(title);
+                dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
