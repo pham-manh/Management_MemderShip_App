@@ -33,8 +33,6 @@ public class data_access_object {
                 ps.setString(5, s.getAddress());
                 ps.setDate(6, new Date(s.getDate_start().getTime()));
                 ps.setDate(7, new Date(s.getDate_end().getTime()));
-                ps.execute();
-
                 return ps.executeUpdate() > 0;
             }
         } catch (SQLException e) {
@@ -65,8 +63,6 @@ public class data_access_object {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ;
-
         return ls;
     }
 

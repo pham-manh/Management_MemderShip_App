@@ -6,8 +6,7 @@ import model.Member;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.Calendar;
 
 public class UI_add_new_member extends JFrame {
@@ -52,39 +51,33 @@ public class UI_add_new_member extends JFrame {
 
 
 
-        btn_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_home_page("Membership Management");
-                dispose();
-            }
+        btn_exit.addActionListener(e -> {
+            new UI_home_page("Membership Management");
+            dispose();
         });
 
 
-        btn_add.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Member a = new Member();
-                a.setName(tf_name.getText());
-                a.setId(tf_id.getText());
-                a.setDate_of_birth(date_chooser_birth.getDate());
-                a.setPhone_number(tf_phone_number.getText());
-                a.setAddress(tf_address.getText());
-                a.setDate_start(date_chooser_star.getDate());
-                a.setDate_end(date_chooser_end.getDate());
+        btn_add.addActionListener(e -> {
+            Member a = new Member();
+            a.setName(tf_name.getText());
+            a.setId(tf_id.getText());
+            a.setDate_of_birth(date_chooser_birth.getDate());
+            a.setPhone_number(tf_phone_number.getText());
+            a.setAddress(tf_address.getText());
+            a.setDate_start(date_chooser_star.getDate());
+            a.setDate_end(date_chooser_end.getDate());
 
-                if (new data_access_object().add_member(a) == false) {
-                    JOptionPane.showMessageDialog(rootPane, "Add failed!!");
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Add Success!");
-                    System.out.println(++count);
-                    tf_name.setText("");
-                    tf_id.setText("");
-                    date_chooser_birth.setDate(null);
-                    tf_phone_number.setText("");
-                    tf_address.setText("");
-                    date_chooser_star.setDate(calendar.getTime());
-                }
+            if (!new data_access_object().add_member(a)) {
+                JOptionPane.showMessageDialog(rootPane, "Add failed!!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Add Success!");
+                System.out.println(++count);
+                tf_name.setText("");
+                tf_id.setText("");
+                date_chooser_birth.setDate(null);
+                tf_phone_number.setText("");
+                tf_address.setText("");
+                date_chooser_star.setDate(calendar.getTime());
             }
         });
     }

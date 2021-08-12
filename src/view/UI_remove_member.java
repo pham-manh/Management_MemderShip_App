@@ -4,8 +4,6 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,33 +43,24 @@ public class UI_remove_member extends JFrame {
 
         show_data_search(id);
 
-        btn_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_home_page("MemberShip Management");
-                dispose();
-            }
+        btn_exit.addActionListener(e -> {
+            new UI_home_page("MemberShip Management");
+            dispose();
         });
-        btn_remove.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                remove(id);
-                new UI_member_search_remove("MemberShip Management");
-                dispose();
-            }
+        btn_remove.addActionListener(e -> {
+            remove(id);
+            new UI_member_search_remove("MemberShip Management");
+            dispose();
         });
     }
 
     private void show_data_search(String id) {
         try {
             Connection connection = DriverManager.getConnection(url, user_name, password);
-            System.out.println("show success");
-            String sql = "Select * from data_table where id =?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            String query = "Select * from data_table where id =?";
+            PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
-
-
             if (rs.next()) {
                 tf_name.setText(rs.getString("name"));
                 tf_name.setEditable(false);

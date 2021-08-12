@@ -6,8 +6,7 @@ import model.Member;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.sql.*;
 
 public class UI_renewal_member extends JFrame {
@@ -22,7 +21,6 @@ public class UI_renewal_member extends JFrame {
 
     private final JDateChooser date_chooser_start = new JDateChooser();
     private final JDateChooser date_chooser_end = new JDateChooser();
-
 
     String url = "jdbc:sqlserver://localhost;databaseName=member_DATA";
     String user_name = "sa";
@@ -43,19 +41,11 @@ public class UI_renewal_member extends JFrame {
         show_data_search(id);
 
 
-        btn_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_home_page("Membership Management");
-                dispose();
-            }
+        btn_exit.addActionListener(e -> {
+            new UI_home_page("Membership Management");
+            dispose();
         });
-        btn_submit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                update_data(id);
-            }
-        });
+        btn_submit.addActionListener(e -> update_data(id));
     }
 
     private void show_data_search(String id) {
@@ -65,9 +55,8 @@ public class UI_renewal_member extends JFrame {
             String sql = "Select * from data_table where id =?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
+
             ResultSet rs = ps.executeQuery();
-
-
             if (rs.next()) {
                 tf_name.setText(rs.getString("name"));
                 tf_name.setEditable(false);
@@ -89,13 +78,14 @@ public class UI_renewal_member extends JFrame {
             String sql = "UPDATE data_table set name= '" + tf_name.getText() + "' ,date_start = ?, date_end=? where id = '" + id + "' ";
             try {
                 Member s = new Member();
-
                 s.setDate_start(date_chooser_start.getDate());
                 s.setDate_end(date_chooser_end.getDate());
+
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setDate(1, new Date(s.getDate_start().getTime()));
                 ps.setDate(2, new Date(s.getDate_end().getTime()));
                 ps.execute();
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -24,45 +24,23 @@ public class UI_menu_management extends JFrame {
         lable_menu.setFont(new Font("Roboto", Font.PLAIN, 60));
 
 
-        btn_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_home_page(title);
-                dispose();
-            }
+        btn_exit.addActionListener(e -> {
+            new UI_home_page(title);
+            dispose();
         });
-        btn_add.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_add_new_member(title);
-                dispose();
-            }
+        btn_add.addActionListener(e -> {
+            new UI_add_new_member(title);
+            dispose();
         });
-        btn_edit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_member_search_edit(title);
-                dispose();
-            }
+        btn_edit.addActionListener(e -> {
+            new UI_member_search_edit(title);
+            dispose();
         });
-        btn_edit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_member_search_edit(title);
-                dispose();
-            }
+        btn_edit.addActionListener(e -> {
+            new UI_member_search_edit(title);
+            dispose();
         });
-        btn_renewal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_member_search_edit(title);
-            }
-        });
-        btn_remove.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_member_search_remove(title);
-            }
-        });
+        btn_renewal.addActionListener(e -> new UI_member_search_edit(title));
+        btn_remove.addActionListener(e -> new UI_member_search_remove(title));
     }
 }

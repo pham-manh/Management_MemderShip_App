@@ -12,9 +12,6 @@ public class UI_member_search_edit extends JFrame{
     private JButton btn_exit;
     private JLabel label_welcome;
 
-
-
-
     public UI_member_search_edit(String title){
         super(title);
         setContentPane(main_panel);
@@ -23,20 +20,12 @@ public class UI_member_search_edit extends JFrame{
         setLocationRelativeTo(null); setDefaultCloseOperation(EXIT_ON_CLOSE);
         label_welcome.setFont(new Font("Roboto", Font.PLAIN,60));
 
-        btn_search.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                new UI_renewal_member(tf_search.getText());
-                dispose();
-            }
+        btn_search.addActionListener(e -> {
+            new UI_renewal_member(tf_search.getText());
+            dispose();
         });
 
-        btn_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_home_page(title);
-            }
-        });
+        btn_exit.addActionListener(e -> new UI_home_page(title));
     }
 
 

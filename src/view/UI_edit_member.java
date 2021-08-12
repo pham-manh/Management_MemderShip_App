@@ -6,8 +6,6 @@ import model.Member;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class UI_edit_member extends JFrame {
@@ -47,24 +45,10 @@ public class UI_edit_member extends JFrame {
         show_data_search(id);
 
 
-        btn_edit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                update_data(id);
-            }
-        });
-        btn_exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new UI_home_page("MemberShip Management");
-                dispose();
-            }
-        });
-        btn_edit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                update_data(id);
-            }
+        btn_edit.addActionListener(e -> update_data(id));
+        btn_exit.addActionListener(e -> {
+            new UI_home_page("MemberShip Management");
+            dispose();
         });
     }
 
@@ -99,11 +83,11 @@ public class UI_edit_member extends JFrame {
     private void show_data_search(String id) {
         try {
             Connection connection = DriverManager.getConnection(url, user_name, password);
-            System.out.println("show success");
             String sql = "Select * from data_table where id =?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
+            System.out.println("show success");
 
 
             if (rs.next()) {
