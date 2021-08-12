@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 import java.util.Calendar;
 
 public class UI_add_new_member extends JFrame {
@@ -75,8 +73,10 @@ public class UI_add_new_member extends JFrame {
                 a.setDate_start(date_chooser_star.getDate());
                 a.setDate_end(date_chooser_end.getDate());
 
-                if (new data_access_object().add_member(a)){
-                    JOptionPane.showMessageDialog(rootPane,"Add Success!");
+                if (new data_access_object().add_member(a) == false) {
+                    JOptionPane.showMessageDialog(rootPane, "Add failed!!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Add Success!");
                     System.out.println(++count);
                     tf_name.setText("");
                     tf_id.setText("");
@@ -84,9 +84,6 @@ public class UI_add_new_member extends JFrame {
                     tf_phone_number.setText("");
                     tf_address.setText("");
                     date_chooser_star.setDate(calendar.getTime());
-
-                }else {
-                    JOptionPane.showMessageDialog(rootPane,"Add failed!!");
                 }
             }
         });

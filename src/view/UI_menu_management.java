@@ -58,5 +58,11 @@ public class UI_menu_management extends JFrame {
                 new UI_member_search_edit(title);
             }
         });
+        btn_remove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UI_member_search_remove(title);
+            }
+        });
     }
 }
